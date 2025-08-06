@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { LocalStorageFlashcardService } from '../services/localstorageflashcard.service';
+import { ApiFlashcardService } from '../services/apiflashcard.service';
 import { FormsModule } from '@angular/forms';
 import { Flashcard, FlashcardSet } from '../models/flashcard.model';
 import { v4 as uuidv4 } from 'uuid';
@@ -28,11 +29,15 @@ export class SetDetailComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private flashcardService: LocalStorageFlashcardService
+    private flashcardService: LocalStorageFlashcardService,
+    private apiFlashcardService: ApiFlashcardService
   ) {
     const setId = this.route.snapshot.paramMap.get('id');
     if (setId) {
-      this.set = this.flashcardService.getSetById(setId);
+      // this.set = this.flashcardService.getSetById(setId);
+      this.apiFlashcardService.getSetById(setId).subscribe((set) => {
+        this.set = set;
+      });
     }
   }
 
@@ -46,7 +51,8 @@ export class SetDetailComponent {
     };
 
     this.set.cards.push(newCard);
-    this.flashcardService.updateSet(this.set); 
+    // this.flashcardService.updateSet(this.set); 
+    this.apiFlashcardService.updateSet(this.set).subscribe(); 
 
     this.newFront = '';
     this.newBack = '';
@@ -58,7 +64,9 @@ export class SetDetailComponent {
     const confirmed = confirm('Delete this flashcard?');
     if (confirmed) {
       this.set.cards = this.set.cards.filter(c => c.id !== cardId);
-      this.flashcardService.updateSet(this.set);
+      // this.flashcardService.updateSet(this.set);
+      this.apiFlashcardService.updateSet(this.set).subscribe(() => {
+      });
     }
   }
   

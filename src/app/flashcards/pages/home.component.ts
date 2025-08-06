@@ -34,8 +34,11 @@ export class HomeComponent implements OnInit {
   deleteSet(setId: string) {
     const confirmed = confirm('Are you sure you want to delete this set?');
     if (confirmed) {
-      this.localstorageflashcardService.deleteSet(setId);
-      this.sets = this.localstorageflashcardService.getSets(); // update local view
+      // this.localstorageflashcardService.deleteSet(setId);
+      // this.sets = this.localstorageflashcardService.getSets(); // update local view
+      this.apiFlashcardService.deleteSet(setId).subscribe(() => {
+        this.sets = this.sets.filter(set => set.id !== setId); // update local view
+      });
     }
   }
 }

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { FlashcardSet } from '../models/flashcard.model';
 import { LocalStorageFlashcardService } from '../services/localstorageflashcard.service';
+import { ApiFlashcardService } from '../services/apiflashcard.service';
 
 // Material modules
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -31,11 +32,15 @@ export class StudyComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private flashcardService: LocalStorageFlashcardService
+    private flashcardService: LocalStorageFlashcardService,
+    private apiFlashcardService: ApiFlashcardService
   ) {
     const setId = this.route.snapshot.paramMap.get('id');
     if (setId) {
-      this.set = this.flashcardService.getSetById(setId);
+      this.apiFlashcardService.getSetById(setId).subscribe((set) => {
+        this.set = set; 
+      });
+      // this.set = this.flashcardService.getSetById(setId);
     }
   }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageFlashcardService } from '../services/localstorageflashcard.service';
+import { ApiFlashcardService } from '../services/apiflashcard.service';
 
 // Material modules
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -23,13 +24,17 @@ export class SetFormComponent {
 
   constructor(
     private flashcardService: LocalStorageFlashcardService,
+    private apiFlashcardService: ApiFlashcardService,
     private router: Router
-  ) {}
+  ) { }
 
   createSet() {
     if (!this.title.trim()) return;
-    this.flashcardService.addSet(this.title.trim());
-    this.router.navigate(['/flashcards']);
+    this.apiFlashcardService.addSet(this.title.trim()).subscribe(() => {
+      this.router.navigate(['/flashcards'])
+    });
+    // this.flashcardService.addSet(this.title.trim());
+    // this.router.navigate(['/flashcards']);
   }
 
 }

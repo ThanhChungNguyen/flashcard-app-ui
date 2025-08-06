@@ -7,10 +7,16 @@ import { FormsModule } from '@angular/forms';
 import { Flashcard, FlashcardSet } from '../models/flashcard.model';
 import { v4 as uuidv4 } from 'uuid';
 
+// Material modules
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-set-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, MatToolbarModule, MatListModule, MatButtonModule, MatIconModule],
   templateUrl: './set-detail.component.html',
 })
 export class SetDetailComponent {

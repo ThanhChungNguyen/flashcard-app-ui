@@ -1,10 +1,12 @@
-<h2>Create New Flashcard Set</h2>
+<mat-toolbar color="primary">
+  🆕 Create New Set
+</mat-toolbar>
 
-<form (ngSubmit)="save()">
-  <label>
-    Set Title:
-    <input [(ngModel)]="title" name="title" required />
-  </label>
+<div class="container" style="padding: 16px;">
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Set Title</mat-label>
+    <input matInput [(ngModel)]="title" />
+  </mat-form-field>
 
-  <button type="submit">Create</button>
-</form>
+  <button mat-raised-button color="primary" (click)="createSet()">Create</button>
+</div>

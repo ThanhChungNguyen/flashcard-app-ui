@@ -5,10 +5,22 @@ import { ActivatedRoute } from '@angular/router';
 import { FlashcardSet } from '../models/flashcard.model';
 import { FlashcardService } from '../services/flashcard.service';
 
+// Material modules
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
 @Component({
   selector: 'app-study',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, 
+    MatToolbarModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule,
+    MatFormFieldModule, MatInputModule],
   styleUrls: ['./study.component.scss'],
   templateUrl: './study.component.html',
 })

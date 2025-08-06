@@ -1,34 +1,18 @@
-<div class="max-w-2xl mx-auto p-6">
-  <h2 class="text-2xl font-bold mb-4">Set: {{ set?.title }}</h2>
+<mat-toolbar color="primary">
+  📁 {{ set?.title || 'Set Details' }}
+</mat-toolbar>
 
-  <a [routerLink]="['/flashcards/set', set?.id, 'study']"
-     class="inline-block mb-6 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-    📖 Study this set
-  </a>
+<div class="container" style="padding: 16px;">
+  <button mat-button color="primary" [routerLink]="['/flashcards/set', set?.id, 'study']">📖 Study</button>
 
-  <h3 class="text-lg font-semibold mb-2">Cards</h3>
-  <ul class="space-y-2 mb-6">
-    <li *ngFor="let card of set?.cards"
-        class="flex justify-between items-center border p-3 rounded">
-      <div>
-        <strong>{{ card.front }}</strong> - {{ card.back }}
-      </div>
-      <button (click)="deleteCard(card.id)"
-              class="text-red-500 hover:text-red-700 text-sm">🗑</button>
-    </li>
-  </ul>
+  <mat-list *ngIf="set?.cards?.length">
+    <mat-list-item *ngFor="let card of set?.cards">
+      <strong>{{ card.front }}</strong> - {{ card.back }}
+      <button mat-icon-button color="warn" (click)="deleteCard(card.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
 
-  <h4 class="text-md font-semibold mb-2">Add New Card</h4>
-  <form (ngSubmit)="addCard()" class="space-y-2">
-    <input [(ngModel)]="newFront" name="front" required
-           placeholder="Front"
-           class="w-full border rounded px-3 py-2" />
-    <input [(ngModel)]="newBack" name="back" required
-           placeholder="Back"
-           class="w-full border rounded px-3 py-2" />
-    <button type="submit"
-            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-      ➕ Add Card
-    </button>
-  </form>
+  <p *ngIf="!set?.cards?.length">No cards in this set yet.</p>
 </div>

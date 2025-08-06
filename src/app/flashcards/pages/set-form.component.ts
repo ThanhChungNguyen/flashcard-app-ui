@@ -1,0 +1,26 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FlashcardService } from '../services/flashcard.service';
+
+@Component({
+  selector: 'app-set-form',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './set-form.component.html',
+})
+export class SetFormComponent {
+  title = '';
+
+  constructor(
+    private flashcardService: FlashcardService,
+    private router: Router
+  ) {}
+
+  save() {
+    if (!this.title.trim()) return;
+    this.flashcardService.addSet(this.title.trim());
+    this.router.navigate(['/flashcards']);
+  }
+}

@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FlashcardService } from '../services/flashcard.service';
+import { FlashcardSet } from '../models/flashcard.model';
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  templateUrl: './home.component.html',
+})
+export class HomeComponent implements OnInit {
+  sets: FlashcardSet[] = [];
+
+  constructor(private flashcardService: FlashcardService) {}
+
+  ngOnInit(): void {
+    this.sets = this.flashcardService.getSets();
+  }
+
+  deleteSet(setId: string) {
+  const confirmed = confirm('Are you sure you want to delete this set?');
+  if (confirmed) {
+    this.flashcardService.deleteSet(setId);
+    this.sets = this.flashcardService.getSets(); // update local view
+  }
+}
+}

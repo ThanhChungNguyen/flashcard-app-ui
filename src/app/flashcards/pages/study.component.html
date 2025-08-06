@@ -1,0 +1,27 @@
+<div class="max-w-xl mx-auto p-6 text-center" *ngIf="set && currentCard; else noCards">
+  <h2 class="text-xl font-semibold mb-6">Studying: {{ set.title }}</h2>
+
+  <div class="cursor-pointer bg-white shadow-lg rounded-lg p-10 text-xl border hover:shadow-xl"
+       (click)="flipCard()">
+    {{ showBack ? currentCard.back : currentCard.front }}
+  </div>
+
+  <div class="mt-6 flex justify-between">
+    <button (click)="prevCard()" [disabled]="currentIndex === 0"
+            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50">
+      ← Prev
+    </button>
+    <button (click)="nextCard()" [disabled]="currentIndex >= set.cards.length - 1"
+            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50">
+      Next →
+    </button>
+  </div>
+
+  <p class="mt-4 text-sm text-gray-500">
+    Card {{ currentIndex + 1 }} / {{ set.cards.length }}
+  </p>
+</div>
+
+<ng-template #noCards>
+  <p class="text-center text-gray-500">No cards found in this set.</p>
+</ng-template>

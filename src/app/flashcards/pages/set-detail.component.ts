@@ -12,11 +12,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-set-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, MatToolbarModule, MatListModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, FormsModule, RouterModule, MatToolbarModule, MatListModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule],
   templateUrl: './set-detail.component.html',
 })
 export class SetDetailComponent {
@@ -44,7 +46,7 @@ export class SetDetailComponent {
     };
 
     this.set.cards.push(newCard);
-    this.flashcardService.updateSet(this.set);
+    this.flashcardService.updateSet(this.set); 
 
     this.newFront = '';
     this.newBack = '';
@@ -59,5 +61,5 @@ export class SetDetailComponent {
       this.flashcardService.updateSet(this.set);
     }
   }
-
+  
 }

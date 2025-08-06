@@ -1,7 +1,17 @@
 <mat-toolbar color="primary">
   📁 {{ set?.title || 'Set Details' }}
 </mat-toolbar>
+<mat-form-field appearance="fill">
+  <mat-label>Front</mat-label>
+  <input matInput [(ngModel)]="newFront">
+</mat-form-field>
 
+<mat-form-field appearance="fill">
+  <mat-label>Back</mat-label>
+  <input matInput [(ngModel)]="newBack">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="addCard()">Add Card</button>
 <div class="container" style="padding: 16px;">
   <button mat-button color="primary" [routerLink]="['/flashcards/set', set?.id, 'study']">📖 Study</button>
 

@@ -1,6 +1,15 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" style="display: flex; justify-content: space-between; align-items: center;">
+  <!-- Left side: Home button and title -->
+  <div style="display: flex; align-items: center;">
     <button mat-icon-button [routerLink]="['/flashcards']" aria-label="Home">
-    <mat-icon>home</mat-icon>
+      <mat-icon>home</mat-icon>
     </button>
-    <span>Flashcards App</span>
+    <span style="margin-left: 8px;">Flashcards App</span>
+  </div>
+
+<!-- Right side: Settings icon -->
+<div style="font-weight: 500; display: flex; align-items: center;">
+  <mat-icon>settings</mat-icon>
+  <span style="margin-left: 4px;">Settings</span>
+</div>
 </mat-toolbar>

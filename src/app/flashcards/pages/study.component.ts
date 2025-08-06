@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { FlashcardSet } from '../models/flashcard.model';
-import { FlashcardService } from '../services/flashcard.service';
+import { LocalStorageFlashcardService } from '../services/localstorageflashcard.service';
 
 // Material modules
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -31,7 +31,7 @@ export class StudyComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private flashcardService: FlashcardService
+    private flashcardService: LocalStorageFlashcardService
   ) {
     const setId = this.route.snapshot.paramMap.get('id');
     if (setId) {

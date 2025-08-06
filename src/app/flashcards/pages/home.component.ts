@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FlashcardService } from '../services/flashcard.service';
+import { LocalStorageFlashcardService } from '../services/localstorageflashcard.service';
 import { FlashcardSet } from '../models/flashcard.model';
 
 // Material modules
@@ -19,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class HomeComponent implements OnInit {
   sets: FlashcardSet[] = [];
 
-  constructor(private flashcardService: FlashcardService) {}
+  constructor(private flashcardService: LocalStorageFlashcardService) {}
 
   ngOnInit(): void {
     this.sets = this.flashcardService.getSets();

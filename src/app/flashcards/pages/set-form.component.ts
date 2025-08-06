@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FlashcardService } from '../services/flashcard.service';
+import { LocalStorageFlashcardService } from '../services/localstorageflashcard.service';
 
 // Material modules
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,7 +22,7 @@ export class SetFormComponent {
   title = '';
 
   constructor(
-    private flashcardService: FlashcardService,
+    private flashcardService: LocalStorageFlashcardService,
     private router: Router
   ) {}
 

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Injectable({
   providedIn: 'root',
 })
-export class FlashcardService {
+export class LocalStorageFlashcardService {
   private setsSubject = new BehaviorSubject<FlashcardSet[]>([]);
   sets$ = this.setsSubject.asObservable();
 

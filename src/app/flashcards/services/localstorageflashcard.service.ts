@@ -45,8 +45,8 @@ export class LocalStorageFlashcardService {
   }
 
   deleteSet(setId: string) {
-  const updated = this.getSets().filter(s => s.id !== setId);
-  this.setsSubject.next(updated);
-  localStorage.setItem('flashcardSets', JSON.stringify(updated));
-}
+    const updated = this.getSets().filter(s => s.id !== setId);
+    this.setsSubject.next(updated);
+    localStorage.setItem('flashcardSets', JSON.stringify(updated));
+  }
 }

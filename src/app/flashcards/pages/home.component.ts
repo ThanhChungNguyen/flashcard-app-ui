@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LocalStorageFlashcardService } from '../services/localstorageflashcard.service';
+import { ApiFlashcardService } from '../services/apiflashcard.service';
 import { FlashcardSet } from '../models/flashcard.model';
 
 // Material modules
@@ -19,17 +20,22 @@ import { MatIconModule } from '@angular/material/icon';
 export class HomeComponent implements OnInit {
   sets: FlashcardSet[] = [];
 
-  constructor(private flashcardService: LocalStorageFlashcardService) {}
+  constructor(private localstorageflashcardService: LocalStorageFlashcardService,
+    private apiFlashcardService: ApiFlashcardService
+  ) { }
 
   ngOnInit(): void {
-    this.sets = this.flashcardService.getSets();
+    // this.sets = this.localstorageflashcardService.getSets();
+    this.apiFlashcardService.getSets().subscribe((sets) => {
+      this.sets = sets;
+    });
   }
 
   deleteSet(setId: string) {
-  const confirmed = confirm('Are you sure you want to delete this set?');
-  if (confirmed) {
-    this.flashcardService.deleteSet(setId);
-    this.sets = this.flashcardService.getSets(); // update local view
+    const confirmed = confirm('Are you sure you want to delete this set?');
+    if (confirmed) {
+      this.localstorageflashcardService.deleteSet(setId);
+      this.sets = this.localstorageflashcardService.getSets(); // update local view
+    }
   }
-}
 }

@@ -18,7 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-study',
   standalone: true,
-  imports: [CommonModule, RouterModule, 
+  imports: [CommonModule, RouterModule,
     MatToolbarModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule,
     MatFormFieldModule, MatInputModule],
   styleUrls: ['./study.component.scss'],
@@ -27,7 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 export class StudyComponent {
   set: FlashcardSet | undefined;
   currentIndex = 0;
-  showBack = false;
+  isFront = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,21 +43,21 @@ export class StudyComponent {
     return this.set?.cards[this.currentIndex];
   }
 
-  flipCard() {
-    this.showBack = !this.showBack;
+  toggleCardSide() {
+    this.isFront = !this.isFront;
   }
 
   nextCard() {
     if (this.set && this.currentIndex < this.set.cards.length - 1) {
       this.currentIndex++;
-      this.showBack = false;
+      this.isFront = true;
     }
   }
 
   prevCard() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
-      this.showBack = false;
+      this.isFront = true;
     }
   }
 }

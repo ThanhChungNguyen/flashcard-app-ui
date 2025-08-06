@@ -20,3 +20,17 @@
 .controls {
   margin-top: 15px;
 }
+
+.flashcard {
+  height: 300px; // or any height you prefer
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.card-inner {
+  text-align: center;
+  font-size: 20px;
+}
+
